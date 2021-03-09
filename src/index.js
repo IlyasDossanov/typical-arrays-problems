@@ -1,22 +1,22 @@
 
 exports.min = function min (array) {
-  let minValue = 99999;
-  if(array == undefined){
-    return(0);
-  }
-  else{
+  let minValue = 0;
+  try{
   	for (var i = 0; i < array.length; i++) {
   		if(array[i] < minValue){
   			minValue = array[i];
   		}
   	}
-return(parseInt(minValue));
-  }
+return(minValue);
+}
+catch(TypeError){
+ return(0);
+}
 }
 
 exports.max = function max (array) {
   if(typeof array === "object" && array !== 0){
-    let maxValue = -99999;
+    let maxValue = 0;
     for(let i = 0; i< array.length; i++){
       if(maxValue < array[i]){
         maxValue = array[i]
@@ -30,7 +30,8 @@ exports.max = function max (array) {
 }
 
 exports.avg = function avg (array) {
-  if(typeof array === "object" && array !== 0){
+  try{
+  if(array != ''){
     let summury = 0;
     for(let i = 0; i<array.length; i++){
       summury+=array[i];
@@ -38,6 +39,9 @@ exports.avg = function avg (array) {
     return(summury/array.length)
   }
   else{
+    return(0);
+  }}
+  catch(TypeError){
     return(0);
   }
 }
